@@ -232,9 +232,19 @@ function cgc_email_follow_alert($followed_user, $follower_id) {
 	$followed_user = get_userdata($followed_user);
 	$follower = get_userdata($follower_id);
 
+	$profile_url = home_url('profile/' . $follower->user_login);
+	// Try to fetch the proper URL for the profile (link to the site user followed from)
+	if( isset( $_POST['action'] ) ) {
+		$action_url = $_POST['action'];
+		if( strpos($action_url, 'cgcookie.com/') !== false && strpos($action_url, 'wp-admin') !== false ) {
+			$subsite_url = substr( $action_url, strpos($action_url, 'wp-admin/') );
+			$profile_url = $subsite_url . 'profile/' . $follower->user_login;	
+		}
+	} 
+
 	$message = "Hello $followed_user->display_name,\n\n";
 	$message .= "$follower->display_name has started following you on the CG Cookie Network.\n\n";
-	$message .= "View $follower->display_name's profile and return the favor: "  . home_url('profile/' . $follower->user_login) . "\n\n";
+	$message .= "View $follower->display_name's profile and return the favor: "  . $profile_url . "\n\n";
 	$message .= "To stop receiving these notfications, go to your dashboard profile settings.\n\n";
 	$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
