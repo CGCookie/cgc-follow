@@ -238,9 +238,9 @@ function cgc_email_follow_alert($followed_user, $follower_id) {
 		$action_url = $_POST['action'];
 		if( strpos($action_url, 'cgcookie.com/') !== false && strpos($action_url, 'wp-admin') !== false ) {
 			$subsite_url = substr( $action_url, strpos($action_url, 'wp-admin/') );
-			$profile_url = $subsite_url . 'profile/' . $follower->user_login;	
+			$profile_url = $subsite_url . 'profile/' . $follower->user_login;
 		}
-	} 
+	}
 
 	$message = "Hello $followed_user->display_name,\n\n";
 	$message .= "$follower->display_name has started following you on the CG Cookie Network.\n\n";
