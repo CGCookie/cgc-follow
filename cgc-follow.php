@@ -196,7 +196,9 @@ function cgc_is_following( $user_id, $followed_user ) {
 */
 function cgc_process_new_follow() {
 	if ( isset( $_POST['user_id'] ) && wp_verify_nonce( $_POST['cgc_nonce'], 'cgc-nonce' ) ) {
-		if ( cgc_follow_user( $_POST['user_id'], $_POST['follow_id'] ) ) {
+		if( $_POST['user_id'] == $_POST['follow_id'] ) {
+			echo 'self';
+		}elseif ( cgc_follow_user( $_POST['user_id'], $_POST['follow_id'] ) ) {
 			echo 'success';
 		} else {
 			echo 'failed';
@@ -211,9 +213,7 @@ add_action( 'wp_ajax_follow', 'cgc_process_new_follow' );
 */
 function cgc_process_unfollow() {
 	if ( isset( $_POST['user_id'] ) && wp_verify_nonce( $_POST['cgc_nonce'], 'cgc-nonce' ) ) {
-		if( $_POST['user_id'] == $_POST['follow_id'] ) {
-			echo 'self';
-		} elseif ( cgc_unfollow_user( $_POST['user_id'], $_POST['follow_id'] ) ) {
+		if ( cgc_unfollow_user( $_POST['user_id'], $_POST['follow_id'] ) ) {
 			echo 'success';
 		} else {
 			echo 'failed';
