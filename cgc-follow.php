@@ -211,7 +211,9 @@ add_action( 'wp_ajax_follow', 'cgc_process_new_follow' );
 */
 function cgc_process_unfollow() {
 	if ( isset( $_POST['user_id'] ) && wp_verify_nonce( $_POST['cgc_nonce'], 'cgc-nonce' ) ) {
-		if ( cgc_unfollow_user( $_POST['user_id'], $_POST['follow_id'] ) ) {
+		if( $_POST['user_id'] == $_POST['follow_id'] ) {
+			echo 'self';
+		} elseif ( cgc_unfollow_user( $_POST['user_id'], $_POST['follow_id'] ) ) {
 			echo 'success';
 		} else {
 			echo 'failed';
