@@ -234,7 +234,7 @@ function cgc_email_follow_alert( $followed_user, $follower_id ) {
 	$followed_user = get_userdata( $followed_user );
 	$follower = get_userdata( $follower_id );
 
-	$profile_url = home_url( 'profile/' . $follower->user_login );
+	$profile_url = home_url( 'profile/' . urlencode( $follower->user_login ) );
 	// Try to fetch the proper URL for the profile (link to the site user followed from)
 	if ( isset( $_POST['action'] ) ) {
 		$action_url = $_POST['action'];
