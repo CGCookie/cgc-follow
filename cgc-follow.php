@@ -258,7 +258,7 @@ function cgc_email_follow_alert( $followed_user, $follower_id ) {
 
 	$message = "Hello $followed_user->display_name,\n\n";
 	$message .= "$follower->display_name has started following you on the CG Cookie Network.\n\n";
-	$message .= "View $follower->display_name's profile and return the favor: "  . $profile_url . "\n\n";
+	$message .= "View $follower->display_name's profile and return the favor: "  . esc_url( $profile_url ) . "\n\n";
 	$message .= "To stop receiving these notfications, go to your dashboard profile settings.\n\n";
 	$message .= "Best regards from the Crew at CG Cookie, Inc.";
 
