@@ -1,4 +1,4 @@
-cgc-follow
+CGC Follow
 ==========
 
-Plugin that handles following users
+Plugin that powers the CG Cookie user following system.
