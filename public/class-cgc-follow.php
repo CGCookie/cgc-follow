@@ -61,6 +61,9 @@ class CGC_Follow {
 
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
+		
+		require CGC_FOLLOW_DIR.'/includes/class.db.php';
+
 	}
 
 	/**
@@ -214,7 +217,24 @@ class CGC_Follow {
 	 * @since    0.0.1
 	 */
 	private static function single_activate() {
-		// @TODO: Define activation functionality here
+
+		global $wpdb;
+
+		// xp table
+		$table_name = $wpdb->base_prefix . 'cgc_follow';
+
+		$sql = "CREATE TABLE $table_name (
+		      	id int(11) NOT NULL AUTO_INCREMENT,
+		     	user_id bigint(20) NOT NULL,
+		     	followers bigint(20) NOT NULL,
+		      	followed_by bigint(20) NOT NULL,
+		      	PRIMARY KEY  (`id`),
+		      	KEY `user_id` (`user_id`)
+		    );";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+
 	}
 
 	/**

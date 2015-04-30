@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * @package   CGC Follow
+ * @package   CGC Follow 2.0
  * @author    Nick Haskins <nick@cgcookie.com>
  * @license   GPL-2.0+
  * @link      http://example.com
