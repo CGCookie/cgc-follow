@@ -34,8 +34,8 @@ class CGC_FOLLOW_DB {
 		$add = $wpdb->query(
 			$wpdb->prepare(
 				"INSERT INTO {$this->table} SET
-					`user_id`  		= '%s',
-					`follower`  	= '%s'
+					`user_id`  		= '%d',
+					`follower`  	= '%d'
 				;",
 				absint( $args['user_id'] ),
 				absint( $args['follower'] )
