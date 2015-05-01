@@ -4,7 +4,7 @@
 *	Follow a user
 *
 *	@param $user_to_follow int id of user to follow
-*	@param $current_user int id of the current user
+*	@param $current_user int id of the current user taking the action
 *	@since 5.0
 */
 function cgc_follow_user( $user_to_follow = 0, $current_user = 0 ) {
@@ -28,7 +28,8 @@ function cgc_follow_user( $user_to_follow = 0, $current_user = 0 ) {
 /**
 *	Unfollow a user
 *
-*	@param $user_id int id of user to unfollow
+*	@param $user_to_unfollow int id of the user to unfollow
+*	@param $current_user int id of the current user taking the action
 *	@since 5.0
 */
 function cgc_unfollow_user( $user_to_unfollow = 0, $current_user = 0 ){
@@ -61,3 +62,23 @@ function cgc_get_followers( $user_id = 0 ) {
 	if ( empty( $user_id ) )
 		$user_id = get_current_user_ID();
 }
+
+/**
+*	Check to see if the current user is following another user
+*
+*	@param $user_to_check int id of the user to check againts
+*	@param $current_user int id of the current user taking the action
+*	@since 5.0
+*/
+function cgc_user_is_following( $user_to_check = 0, $current_user = 0 ) {
+
+	if ( empty( $current_user ) )
+		$current_user = get_current_user_ID();
+
+	$db = new CGC_FOLLOW_DB;
+
+	$result =  $db->is_following( $current_user );
+
+	return $result;
+}
+
