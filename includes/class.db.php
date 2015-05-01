@@ -62,6 +62,8 @@ class CGC_FOLLOW_DB {
 		if( empty( $args['user_id'] ) || empty( $args['follower'] )  )
 			return;
 
+		do_action( 'cgc_follower_removed', $args );
+
  		$remove = $wpdb->query( $wpdb->prepare( "DELETE FROM {$this->table} WHERE `user_id` = '%d' AND `follower` = '%d' ;", absint( $args['user_id'] ), absint( $args['follower'] ) ) );
 
 	}
