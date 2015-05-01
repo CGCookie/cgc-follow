@@ -16,7 +16,7 @@ class CGC_FOLLOW_DB {
 	}
 
 	/**
-	*	Add a follower or followers to a user id
+	*	Add a single follower
 	*
 	*	@since 5.0
 	*/
@@ -30,8 +30,6 @@ class CGC_FOLLOW_DB {
 		);
 
 		$args = wp_parse_args( $args, $defaults );
-
-		//var_dump($args);exit;
 
 		$add = $wpdb->query(
 			$wpdb->prepare(
@@ -52,4 +50,19 @@ class CGC_FOLLOW_DB {
 		return false;
 	}
 
+	/**
+	*	Remove a follower
+	*
+	*	@since 5.0
+	*/
+	public function remove_follower( $args = array() ) {
+
+		global $wpdb;
+
+		if( empty( $args['user_id'] ) || empty( $args['follower'] )  )
+			return;
+
+ 		$remove = $wpdb->query( $wpdb->prepare( "DELETE FROM {$this->table} WHERE `user_id` = '%d' AND `follower` = '%d' ;", absint( $args['user_id'] ), absint( $args['follower'] ) ) );
+
+	}
 }
