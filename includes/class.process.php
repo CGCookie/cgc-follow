@@ -24,6 +24,10 @@ class cgcProcessFollow {
 
 	    		$user_id 	= get_current_user_id();
 
+	    		$user_to_follow = isset( $_POST['user_to_follow'] ) ? $_POST['user_to_follow'] : false;
+
+	    		cgc_follow_user( $user_to_follow, $user_id );
+
 		        wp_send_json_success();
 
 		    }

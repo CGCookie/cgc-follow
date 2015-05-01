@@ -20,14 +20,13 @@ class CGC_FOLLOW_DB {
 	*
 	*	@since 5.0
 	*/
-	public function add_followers( $args = array() ) {
+	public function add_follower( $args = array() ) {
 
 		global $wpdb;
 
 		$defaults = array(
 			'user_id'		=> '',
-			'followers'		=> '',
-			'followed_by'	=> ''
+			'follower'		=> ''
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -38,12 +37,10 @@ class CGC_FOLLOW_DB {
 			$wpdb->prepare(
 				"INSERT INTO {$this->table} SET
 					`user_id`  		= '%s',
-					`followers`  	= '%s',
-					`followed_by`   = '%s'
+					`follower`  	= '%s'
 				;",
 				absint( $args['user_id'] ),
-				$args['followers'],
-				$args['followed_by']
+				absint( $args['follower'] )
 			)
 		);
 
@@ -52,37 +49,6 @@ class CGC_FOLLOW_DB {
 		if ( $add )
 			return $wpdb->insert_id;
 
-		return false;
-	}
-
-	/**
-	*	Update followers to a user id
-	*
-	*	@param $user_id int id of the user to update the followers for
-	*	@since 5.0
-	*/
-	public function update_followers( $user_id = '', $args = array() ) {
-
-		global $wpdb;
-
-		$followers = $args['followers'];
-		$followers = explode(', ', $followers);
-
-		//var_dump($post_id);wp_die();
-
-		$update = $wpdb->query(
-			$wpdb->prepare(
-				"UPDATE {$this->table} SET
-					`followers`    	= '%s'
-					WHERE 'user_id' = '%d'
-				;",
-				trim( $followers ),
-				absint( $user_id )
-			)
-		);
-
-		if( false !== $update )
-			return true;
 		return false;
 	}
 
