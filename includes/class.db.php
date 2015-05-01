@@ -44,7 +44,7 @@ class CGC_FOLLOW_DB {
 			)
 		);
 
-		do_action( 'cgc_follow_add_follower', $args, $wpdb->insert_id );
+		do_action( 'cgc_follower_added', $args, $wpdb->insert_id );
 
 		if ( $add )
 			return $wpdb->insert_id;

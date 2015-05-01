@@ -30,6 +30,10 @@ class cgcProcessFollow {
 
 		        wp_send_json_success();
 
+		    } else {
+
+		    	wp_send_json_error();
+
 		    }
 
 	  	} else {
