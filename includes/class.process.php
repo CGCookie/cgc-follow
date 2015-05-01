@@ -15,50 +15,39 @@ class cgcProcessFollow {
 
 	public function process_follow(){
 
-		if ( isset( $_POST['action'] ) && $_POST['action'] == 'process_follow' ) {
+		if ( isset( $_POST['action'] ) ) {
 
-			if( !is_user_logged_in() )
-				return;
+	    	$current_user 	= get_current_user_id();
 
-	    	if ( wp_verify_nonce( $_POST['nonce'], 'process_follow' ) ) {
+	    	$target_user 	= isset( $_POST['user_to_follow'] ) ? $_POST['user_to_follow'] : false;
 
-	    		$user_id 	= get_current_user_id();
+	    	if ( empty ( $target_user ) )
+	    		return;
 
-	    		$user_to_follow = isset( $_POST['user_to_follow'] ) ? $_POST['user_to_follow'] : false;
+			if ( $_POST['action'] == 'process_follow' && wp_verify_nonce( $_POST['nonce'], 'process_follow' )  ) {
 
-	    		cgc_follow_user( $user_to_follow, $user_id );
-
-		        wp_send_json_success();
-
-		    } else {
-
-		    	wp_send_json_error();
-
-		    }
-
-		} elseif ( isset( $_POST['action'] ) && $_POST['action'] == 'process_unfollow' ) {
-
-	    	if ( wp_verify_nonce( $_POST['nonce'], 'process_follow' ) ) {
-
-	    		$user_id 	= get_current_user_id();
-
-	    		$user_to_unfollow = isset( $_POST['user_to_follow'] ) ? $_POST['user_to_follow'] : false;
-
-	    		cgc_unfollow_user( $user_to_unfollow, $user_id );
+	    		cgc_follow_user( $target_user, $current_user );
 
 		        wp_send_json_success();
 
-		    } else {
+			} elseif ( $_POST['action'] == 'process_unfollow' && wp_verify_nonce( $_POST['nonce'], 'process_follow' ) ) {
 
-		    	wp_send_json_error();
+	    		cgc_unfollow_user( $target_user, $current_user );
 
-		    }
+		        wp_send_json_success();
 
-	  	} else {
+			} else {
 
-	  		wp_send_json_error();
+				wp_send_json_error();
 
-	  	}
+			}
+
+		} else {
+
+			wp_send_json_error();
+
+		}
+
 	}
 
 }
