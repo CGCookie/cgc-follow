@@ -1,12 +1,10 @@
 <?php
+
 /**
-*	Functions for theme templates
-*
+*	Draw follow/unfollow buttons
+*	@since 5.0
 */
-
 function cgc_draw_follow_buttons(){
-
-	ob_start();
 
 	?>
 	<div class="cgc-follow--wrap">
@@ -14,6 +12,4 @@ function cgc_draw_follow_buttons(){
 		<a href="#" class="cgc-follow cgc-follow--unfollow button primary tiny">Unfollow</a>
 	</div>
 	<?php
-
-	return ob_get_clean();
 }
