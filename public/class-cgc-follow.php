@@ -61,9 +61,11 @@ class CGC_Follow {
 
 		// Activate plugin when new blog is added
 		add_action( 'wpmu_new_blog', array( $this, 'activate_new_site' ) );
-		
-		require CGC_FOLLOW_DIR.'/includes/class.db.php';
 
+		require CGC_FOLLOW_DIR.'/includes/class.db.php';
+		require CGC_FOLLOW_DIR.'/includes/helpers.php';
+		require CGC_FOLLOW_DIR.'/includes/class.process.php';
+		require CGC_FOLLOW_DIR.'/includes/template-functions.php';
 	}
 
 	/**
