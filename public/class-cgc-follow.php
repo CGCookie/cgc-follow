@@ -226,11 +226,8 @@ class CGC_Follow {
 		$table_name = $wpdb->base_prefix . 'cgc_follow';
 
 		$sql = "CREATE TABLE $table_name (
-		      	id int(11) NOT NULL AUTO_INCREMENT,
 		     	user_id bigint(20) NOT NULL,
-		     	followers bigint(20) NOT NULL,
-		      	followed_by bigint(20) NOT NULL,
-		      	PRIMARY KEY  (`id`),
+		     	follower bigint(20) NOT NULL,
 		      	KEY `user_id` (`user_id`)
 		    );";
 
