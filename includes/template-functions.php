@@ -11,13 +11,11 @@ function cgc_draw_follow_buttons( $user_to_check, $current_user ){
 
 	?><div class="cgc-follow--wrap"><?php
 
-	if ( cgc_user_is_following( $user_to_check, $current_user ) ) { ?>
-		<a href="#" class="cgc-follow cgc-follow--unfollow button primary tiny">unfollow</a>
-		<a href="#" class="cgc-follow cgc-follow--follow button primary tiny" style="display:none;">follow</a>
-	<?php } else { ?>
-		<a href="#" class="cgc-follow cgc-follow--follow button primary tiny">follow</a>
-		<a href="#" class="cgc-follow cgc-follow--unfollow button primary tiny" style="display:none;">unfollow</a>
-	<?php } ?>
+		if ( function_exists('cgc_user_is_following') && cgc_user_is_following( $user_to_check, $current_user ) ) : ?>
+			<a href="#" data-userid="<?php echo $user_to_check;?>" class="button ghost cgc-follow cgc-follow--unfollow">Unfollow</a>
+		<?php else: ?>
+			<a href="#" data-userid="<?php echo $user_to_check;?>" class="button ghost cgc-follow cgc-follow--follow">Follow</a>
+		<?php endif; ?>
 
 	</div><?php
 }
