@@ -69,6 +69,25 @@ function cgc_get_followers( $user_id = 0, $count = false ) {
 	return true == $count ? count( $out ) : $out;
 }
 
+
+/**
+*	Get a list of users a user_id is following
+*
+*	@param $user_id int id of user to get followers for
+*	@param $count bool if true returns a count, if false returns array of user_ids
+*	@since 5.0
+*/
+function cgc_get_following( $user_id = 0, $count = false ) {
+
+	if ( empty( $user_id ) )
+		return;
+
+	$db = new CGC_FOLLOW_DB;
+	$out = $db->get_following( $user_id );
+
+	return true == $count ? count( $out ) : $out;
+}
+
 /**
 *	Check to see if the current user is following another user
 *
