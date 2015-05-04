@@ -55,12 +55,18 @@ function cgc_unfollow_user( $user_to_unfollow = 0, $current_user = 0 ){
 *	Get a users followers
 *
 *	@param $user_id int id of user to get followers for
+*	@param $count bool if true returns a count, if false returns array of user_ids
 *	@since 5.0
 */
-function cgc_get_followers( $user_id = 0 ) {
+function cgc_get_followers( $user_id = 0, $count = false ) {
 
 	if ( empty( $user_id ) )
-		$user_id = get_current_user_ID();
+		return;
+
+	$db = new CGC_FOLLOW_DB;
+	$out = $db->get_followers( $user_id );
+
+	return true == $count ? count( $out ) : $out;
 }
 
 /**

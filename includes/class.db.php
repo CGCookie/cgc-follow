@@ -68,6 +68,20 @@ class CGC_FOLLOW_DB {
 
 	}
 
+	/**
+	*	Get the number of followers for a specific user_id
+	*
+	*	@since 5.0
+	*/
+	public function get_followers( $user_id = 0 ) {
+
+		global $wpdb;
+
+		$result = $wpdb->get_results( $wpdb->prepare( "SELECT follower FROM {$this->table} WHERE `user_id` = '%d'; ", absint( $user_id ) ) );
+
+		return $result;
+	}
+
 	public function is_following( $user_id = 0 ){
 
 		global $wpdb;
