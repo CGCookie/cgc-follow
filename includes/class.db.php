@@ -91,7 +91,7 @@ class CGC_FOLLOW_DB {
 
 		global $wpdb;
 
-		$result = $wpdb->get_results( $wpdb->prepare( "SELECT follower FROM {$this->table} WHERE `user_id` = '%d'; ", absint( $user_id ) ) );
+		$result = $wpdb->get_results( $wpdb->prepare( "SELECT user_id FROM {$this->table} WHERE `follower` = '%d'; ", absint( $user_id ) ) );
 
 		return $result;
 	}
