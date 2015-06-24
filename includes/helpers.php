@@ -100,9 +100,12 @@ function cgc_user_is_following( $user_to_check = 0, $current_user = 0 ) {
 	if ( empty( $current_user ) )
 		$current_user = get_current_user_ID();
 
+	if ( empty( $user_to_check ) )
+		return;
+
 	$db = new CGC_FOLLOW_DB;
 
-	$result =  $db->is_following( $current_user );
+	$result =  $db->is_following( $user_to_check, $current_user );
 
 	return $result;
 }

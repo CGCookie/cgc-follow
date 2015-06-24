@@ -101,14 +101,11 @@ class CGC_FOLLOW_DB {
 	*
 	*	@since 5.0
 	*/
-	public function is_following( $user_id = 0 ){
+	public function is_following( $user_to_check, $current_user = 0 ){
 
 		global $wpdb;
 
-		if ( empty( $user_id ) )
-			return;
-
-		$result = $wpdb->get_col( $wpdb->prepare( "SELECT follower FROM {$this->table} WHERE `follower` = '%d'; ", absint( $user_id ) ) );
+		$result = $wpdb->get_col( $wpdb->prepare( "SELECT user_id FROM {$this->table} WHERE `user_id` = '%d' AND `follower` = '%d'; ", absint( $user_to_check ), absint( $current_user ) ) );
 
 		return $result;
 
