@@ -10,7 +10,7 @@
  * Plugin Name:       CGC Follow
  * Plugin URI:        http://cgcookie.com
  * Description:       Creates a social following/follower system
- * Version:           2.0
+ * Version:           5.0
  * GitHub Plugin URI: https://github.com/cgcookie/cgc-follow
  */
 
@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 // Set some constants
-define('CGC_FOLLOW_VERSION', '2.0');
+define('CGC_FOLLOW_VERSION', '5.0');
 define('CGC_FOLLOW_DIR', plugin_dir_path( __FILE__ ));
 define('CGC_FOLLOW_URL', plugins_url( '', __FILE__ ));
 
